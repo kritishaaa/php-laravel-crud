@@ -10,7 +10,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $students = Student::all();
+        return view("students.index", compact("students"));
     }
 
     public function create()
@@ -28,8 +29,8 @@ class StudentController extends Controller
 
     public function show(string $id)
     {
-        $students=Student::all();
-        return view('students.show_students',compact('students'));
+        $student= Student::findOrFail($id);
+        return view('students.show_students',compact('student'));
     }
 
     public function edit(string $id)
@@ -50,7 +51,7 @@ class StudentController extends Controller
     {
         $student=Student::findOrFail($id);
         $student->delete();
-        return redirect(route('students.show',compact('student')));
+        return redirect(route('students.index'));
         
     }
 }
