@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('welcome');
@@ -30,28 +27,29 @@ class StudentController extends Controller
 
     public function show(string $id)
     {
-        return view('welcome');
+        $students=Student::all();
+        return view('students.show_students',compact('students'));
     }
-
 
     public function edit(string $id)
     {
-        //
+        $student= Student::findOrFail($id);
+        return view('students.edit',compact('student'));
+    
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+       $student=Student::findOrFail($id);
+       $student->update($request->all());
+       return redirect(route('students.show',compact('student')));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $student=Student::findOrFail($id);
+        $student->delete();
+        return redirect(route('students.show',compact('student')));
+        
     }
 }

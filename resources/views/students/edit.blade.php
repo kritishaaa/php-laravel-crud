@@ -28,7 +28,6 @@
         input[type="date"],
         input[type="email"],
         input[type="tel"],
-        input[type="tel"],
         textarea {
             width: 100%;
             padding: 8px;
@@ -52,34 +51,35 @@
 </head>
 <body>
     <div class="container">
-        <h2>Student Registration Form</h2>
-        <form action="{{route('students.store')}}" method="POST">
+        <h2>Update Form</h2>
+        <form action="{{route('students.update',$student->id)}}" method="Post">
             @csrf 
+            @method('put')
             <div class="form-group">
                 <label for="fname">First Name:</label>
-                <input type="text" id="first_name" name="fname" required>
+                <input type="text" id="first_name" name="fname" value="{{$student->fname}}"required>
             </div>
             <div class="form-group">
                 <label for="lname">Last Name:</label>
-                <input type="text" id="last_name" name="lname" required>
+                <input type="text" id="last_name" name="lname" value="{{$student->lname}}"required>
             </div>
             <div class="form-group">
                 <label for="dob">Date of Birth:</label>
-                <input type="date" id="date_of_birth" name="dob" required>
+                <input type="date" id="date_of_birth" name="dob" value="{{$student-> dob}}"required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="{{$student->email}}"required>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone_number" name="phone" required>
+                <input type="tel" id="phone_number" name="phone" value="{{$student->phone}}"required>
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address"  required>
+                <input type="text" id="address" name="address" rows="4" value="{{$student->address}}"required>
             </div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Update">
         </form>
     </div>
 </body>
