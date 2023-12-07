@@ -33,17 +33,30 @@ class StudentRequest extends FormRequest
                 'required',
                 'max:20',
                 'string'
-
             ],
             
             'email'=>[
                 'required',
-                'unique',
                 'email'
+            ],
 
+            'phone'=>[
+                'required',
+                'numeric',
+                'digits:10'
+            ],
+
+            'address'=>[
+                'required',
+                'string',
+                'max:20',
             ],
             
-        ];
-        return $rules;
-    }
+            'dob'=>[
+                'required',
+                'date'
+            ]
+            ];
+            return $rules;
+        }
 }

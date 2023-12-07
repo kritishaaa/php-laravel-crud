@@ -53,6 +53,10 @@
 <body>
     <div class="container">
         <h2>Student Registration Form</h2>
+        @if($errors->any())
+        {{$errors}}
+         </ul>
+        @endif
         <form action="{{route('students.store')}}" method="POST">
             @csrf 
             <div class="form-group">

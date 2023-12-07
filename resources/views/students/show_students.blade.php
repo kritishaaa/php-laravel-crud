@@ -52,6 +52,7 @@
                 <td>{{$student-> phone}}</td>
                 <td>{{$student-> address}}</td>
                 <td>
+                    
                     <a href="{{route('students.edit',$student->id)}}"><button>Edit</button></a>
                     <form action="{{route('students.destroy', $student->id)}}" method="post">
                         @csrf

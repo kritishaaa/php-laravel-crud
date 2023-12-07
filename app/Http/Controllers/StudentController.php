@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class StudentController extends Controller
         return view('students.create');
     }
     
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         $student=$request->all();
         $newStudent=Student::create($student); 
