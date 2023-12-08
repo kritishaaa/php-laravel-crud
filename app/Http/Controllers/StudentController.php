@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -21,35 +22,34 @@ class StudentController extends Controller
     
     public function store(StudentRequest $request)
     {
-        $student=$request->all();
+        $student=$request->validated();
+
         $newStudent=Student::create($student); 
-        return redirect(route('students.show',$newStudent->id));
+        return redirect(route('students.show',$newStudent));
         
     }
 
-    public function show(string $id)
-    {
-        $student= Student::findOrFail($id);
+    public function show(Student $student)
+    {   
         return view('students.show_students',compact('student'));
     }
 
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        $student= Student::findOrFail($id);
         return view('students.edit',compact('student'));
     
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, Student $student)
     {
-       $student=Student::findOrFail($id);
-       $student->update($request->all());
+       
+        $data=$request->validated();
+        $student->update($data);
        return redirect(route('students.show',compact('student')));
     }
 
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        $student=Student::findOrFail($id);
         $student->delete();
         return redirect(route('students.index'));
         

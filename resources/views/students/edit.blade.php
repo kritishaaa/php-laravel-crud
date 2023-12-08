@@ -77,7 +77,7 @@
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" rows="4" value="{{$student->address}}"required>
+                <input type="text" id="address" name="address" value="{{$student->address}}"required>
             </div>
             <input type="submit" value="Update">
         </form>
