@@ -42,7 +42,6 @@ class StudentController extends Controller
 
     public function update(UpdateRequest $request, Student $student)
     {
-       
         $data=$request->validated();
         $student->update($data);
        return redirect(route('students.show',compact('student')));
